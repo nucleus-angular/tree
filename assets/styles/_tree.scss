@@ -1,0 +1,51 @@
+/* tree system */
+.nag-tree > ul,
+.nag-tree .nag-tree-element > ul {
+  padding: 0;
+  list-style: none;
+}
+
+.nag-tree .nag-tree-element {
+  cursor: pointer;
+}
+
+.nag-tree .nag-tree-element .nag-leaf-value {
+  padding-left: 14px;
+}
+
+.nag-tree .nag-tree-element> .nag-tree-label:before,
+.nag-tree .nag-tree-element.nag-tree-expanded > .nag-tree-label:before {
+  font-family: 'nag-icon-fonts';
+  font-style: normal;
+  speak: none;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  width: 10px;
+  display: inline-block;
+}
+
+.nag-tree .nag-tree-element > .nag-tree-label {
+  padding-left: 14px;
+  padding-right: 1px;
+}
+
+.nag-tree .nag-tree-element > .nag-tree-label:before {
+  content: "\e00a";
+}
+
+.nag-tree .nag-tree-element.nag-tree-expanded > .nag-tree-label:before {
+  content: "\e009";
+}
+
+.nag-tree .nag-tree-element .nag-node {
+  padding-left: 14px;
+}
+
+.nag-tree .nag-tree-element > ul.nag-node {
+  display: none;
+}
+
+.nag-tree .nag-tree-element.nag-tree-expanded > ul.nag-node {
+  display: block;
+}
