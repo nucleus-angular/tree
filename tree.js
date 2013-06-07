@@ -19,13 +19,13 @@ angular.module('nag.tree', [
             var template = $(nagHelper.getTemplateString(scope.options));
 
             $(element).append($compile(template)(scope));
-            $(element).addClass('nag-tree');
+            $(element).addClass('tree');
           },
           post: function(scope, element, attributes) {
             scope.treeClick = function($event) {
               $event.preventDefault();
               $event.stopPropagation();
-              $($event.currentTarget).toggleClass('nag-tree-expanded');
+              $($event.currentTarget).toggleClass('tree-expanded');
             }
 
             scope.nodeClick = function($event, nodeData) {
