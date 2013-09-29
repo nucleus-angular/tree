@@ -4,7 +4,7 @@
  * @module nag.tree
  * @ngdirective nagTree
  *
- * @nghtmlattribute {object} nag-tree Teel AngularJS this element is a tree component and the passed object overwrite defaults for $scope.options
+ * @nghtmlattribute {object} nag-tree Tell AngularJS this element is a tree component and the passed object overwrite defaults for $scope.options
  */
 angular.module('nag.tree', [
   'nag.core'
