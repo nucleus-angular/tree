@@ -1,5 +1,9 @@
 /**
- * Tree components
+ * # Tree
+ *
+ * The directive allows you to create a tree like dropdown, like you see with file system viewers.
+ *
+ * EXAMPLE TODO
  *
  * @module nag.tree
  * @ngdirective nagTree
