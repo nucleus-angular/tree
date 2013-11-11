@@ -11,7 +11,8 @@
  * @nghtmlattribute {object} nag-tree Tell AngularJS this element is a tree component and the passed object overwrite defaults for $scope.options
  */
 angular.module('nag.tree', [
-  'nag.core'
+  'nag.core',
+  'nag.dynamicEvent'
 ])
 .directive('nagTree', [
   '$compile',
@@ -22,6 +23,9 @@ angular.module('nag.tree', [
       restrict: 'A',
       scope: {
         options: '=nagTree'
+      },
+      templateUrl: function(element, attributes) {
+        return 'components/nucleus-angular-tree/assets/templates/tree.html';
       },
       compile: function(element, attributes, transclude) {
         return {
@@ -44,9 +48,9 @@ angular.module('nag.tree', [
              * @property {object} nagHelper
              */
             scope.nagHelper = nagHelper;
-            var template = $(nagHelper.getTemplateString(scope.options));
+            //var template = $(nagHelper.getTemplateString(scope.options));
 
-            $(element).append($compile(template)(scope));
+            //$(element).append($compile(template)(scope));
             $(element).addClass('tree');
           },
           post: function(scope, element, attributes) {

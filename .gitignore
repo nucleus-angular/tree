@@ -2,3 +2,5 @@
 components
 coverage
 docs
+.sass-cache
+node_modules
