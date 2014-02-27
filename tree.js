@@ -10,7 +10,22 @@
  *
  * @nghtmlattribute {object} nag-tree Tell AngularJS this element is a tree component and the passed object overwrite defaults for $scope.options
  */
+angular.module('nag.tree.configurator', [
+  'nag.core'
+])
+.run([
+  'nagDefaults',
+  function(nagDefaults) {
+    nagDefaults.setOptions('tree', {
+      rootTemplatePath: nagDefaults.getRootTemplatePath() + '/nucleus-angular-tree/assets/templates',
+      templateUrl: 'tree.html',
+      recursionTemplateUrl: 'recursion.html',
+      data: []
+    });
+  }
+])
 angular.module('nag.tree', [
+  'nag.tree.configurator',
   'nag.core',
   'nag.dynamicEvent'
 ])
@@ -39,7 +54,7 @@ angular.module('nag.tree', [
              *   @property {string} [recursionTemplateUrl="recursion.html"] Recursive template
              *   @property {object} data The data used to populate the tree
              */
-            scope.options = nagDefaults.getTreeOptions(scope.options);
+            scope.options = nagDefaults.getOptions('tree', scope.options);
 
             /**
              * Instance of nagHelper
