@@ -1,0 +1,8 @@
+{
+  "tests": [
+    "dalek/tree.js"
+  ],
+  "browser": [
+    "chrome"
+  ]
+}

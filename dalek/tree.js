@@ -13,7 +13,7 @@ module.exports = {
     test.open('http://localhost:3000/home')
     //angular - need to wait for angular to render this container
     .wait(500)
-      .assert.numberOfVisibleElements('[data-ut="default"] li', 3, 'First ')
+      .assert.numberOfVisibleElements('[data-ut="default"] li', 3, 'first level is visible')
     .done();
   },
 
@@ -22,7 +22,7 @@ module.exports = {
     //angular - need to wait for angular to render this container
     .wait(500)
     .click('[data-ut="default"] > ul > li:nth-child(2)')
-      .assert.visible('[data-ut="default"] > ul > li:nth-child(2) > ul > li', 3, 'First ')
+      .assert.visible('[data-ut="default"] > ul > li:nth-child(2) > ul > li', 'sub-tree is visible')
     .done();
   }
 }

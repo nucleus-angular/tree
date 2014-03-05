@@ -15,12 +15,24 @@ angular.module('nag.tree.configurator', [
 ])
 .run([
   'nagDefaults',
-  function(nagDefaults) {
+  'nagHelper',
+  function(nagDefaults, nagHelper) {
+    /**
+     * Options
+     *
+     * @property {object} options
+     *   @property {string} [templateUrl="tree.html"] Main template path
+     *   @property {string} [recursionTemplateUrl="recursion.html"] Recursive template
+     *   @property {object} data The data used to populate the tree
+     *   @property {function} [getTemplatePath=function(){}] Function used to get template paths
+     */
     nagDefaults.setOptions('tree', {
-      rootTemplatePath: nagDefaults.getRootTemplatePath() + '/nucleus-angular-tree/assets/templates',
-      templateUrl: 'tree.html',
-      recursionTemplateUrl: 'recursion.html',
-      data: []
+      templateUrl: 'nucleus-angular-tree/assets/templates/tree.html',
+      recursionTemplateUrl: 'nucleus-angular-tree/assets/templates/recursion.html',
+      data: [],
+      getTemplatePath: function(templateName) {
+        return nagHelper.getTemplatePath('tree', templateName);
+      }
     });
   }
 ])
@@ -40,20 +52,13 @@ angular.module('nag.tree', [
         options: '=nagTree'
       },
       templateUrl: function(element, attributes) {
-        return 'components/nucleus-angular-tree/assets/templates/tree.html';
+        return nagHelper.getTemplatePath('tree');
       },
       compile: function(element, attributes, transclude) {
         return {
           pre: function(scope, element, attributes) {
-            /**
-             * Options
-             *
-             * @property {object} options
-             *   @property {string} [rootTemplatePath=rootTemplatePath + '/nucleus-angular-tree/assets/templates'] Root path for template
-             *   @property {string} [templateUrl="tree.html"] Main template path
-             *   @property {string} [recursionTemplateUrl="recursion.html"] Recursive template
-             *   @property {object} data The data used to populate the tree
-             */
+            $(element).addClass('tree');
+
             scope.options = nagDefaults.getOptions('tree', scope.options);
 
             /**
@@ -63,10 +68,6 @@ angular.module('nag.tree', [
              * @property {object} nagHelper
              */
             scope.nagHelper = nagHelper;
-            //var template = $(nagHelper.getTemplateString(scope.options));
-
-            //$(element).append($compile(template)(scope));
-            $(element).addClass('tree');
           },
           post: function(scope, element, attributes) {
             /**
