@@ -1,3 +1,10 @@
+/**
+ * # Tree
+ * 
+ * Display content in a tree view
+ *
+ * @module nag.tree
+ */
 angular.module('nag.tree', [
   'nag.core',
   'nag.dynamicEvent'
@@ -6,6 +13,11 @@ angular.module('nag.tree', [
   'nagDefaults',
   'nagHelper',
   function(nagDefaults, nagHelper) {
+    /**
+     * @ignore Property definations for tree directive
+     *
+     * @ngdirective nagTree
+     */
     /**
      * Options
      *
