@@ -106,7 +106,7 @@ angular.module('nag.tree')
             //TODO: research: this seems to work however I have not idea and it only gets called 2 times even though it can take a while to load large tree
             var interval = setInterval(function() {
               //console.log('test');
-              if($('.tree .tree').length > 0) {
+              if(element.find('img').length > 0) {
                 //console.log('test2');
                 clearInterval(interval);
                 SVGInjector(element.find('img').get());
