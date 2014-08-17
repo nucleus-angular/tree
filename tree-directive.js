@@ -24,9 +24,11 @@ angular.module('nag.tree')
       templateUrl: function(element, attributes) {
         return nagHelper.getTemplatePath('tree');
       },
-      compile: function(element, attributes, transclude) {
-        return {
-          pre: function(scope, element, attributes) {
+      link: //function(element, attributes, transclude) {
+        //return {
+        //  pre: function(scope, element, attributes) {
+        //  },
+        /*  post:*/ function(scope, element, attributes) {
             $(element).addClass('tree');
 
             scope.options = nagDefaults.getOptions('tree', scope.options);
@@ -38,8 +40,7 @@ angular.module('nag.tree')
              * @property {object} nagHelper
              */
             scope.nagHelper = nagHelper;
-          },
-          post: function(scope, element, attributes) {
+
             /**
              * Function to perform when a tree is clicked on
              *
@@ -51,8 +52,8 @@ angular.module('nag.tree')
             scope.treeClick = function($event) {
               $event.preventDefault();
               $event.stopPropagation();
-              $($event.currentTarget).toggleClass('tree-expanded');
-            }
+              $($event.currentTarget).toggleClass('expanded');
+            };
 
             /**
              * Function to perform when a node is clicked on
@@ -63,10 +64,10 @@ angular.module('nag.tree')
              * @param {object} $event Event object relating to the action
              * @param {object} nodeData Node data
              */
-            scope.nodeClick = function($event, nodeData) {
+            scope.leafClick = function($event, nodeData) {
               $event.preventDefault();
               $event.stopPropagation();
-            }
+            };
 
             /**
              * Determine if the passed in data has nodes
@@ -78,12 +79,42 @@ angular.module('nag.tree')
              *
              * @returns {boolean} Whether or not the passed in data has nodes
              */
-            scope.hasNodes = function(data) {
-              return (angular.isDefined(data.nodes) && angular.isArray(data.nodes));
-            }
+            scope.hasNodes = function(nodeData) {
+              return (angular.isDefined(nodeData.nodes) && angular.isArray(nodeData.nodes));
+            };
+
+            scope.hasIcon = function(nodeData) {
+              if(scope.hasNodes(nodeData)) {
+                return (!!nodeData.expandedSvg || !!nodeData.collapsedSvg);
+              } else {
+                return !!nodeData.staticSvg;
+              }
+            };
+
+            scope.getIconPath = function(nodeData) {
+              var iconPath;
+
+              if(scope.hasNodes(nodeData)) {
+                iconPath = nodeData.expandedSvg;
+              } else if(!!nodeData.staticSvg) {
+                iconPath = nodeData.staticSvg;
+              }
+
+              return iconPath;
+            };
+
+            //TODO: research: this seems to work however I have not idea and it only gets called 2 times even though it can take a while to load large tree
+            var interval = setInterval(function() {
+              //console.log('test');
+              if($('.tree .tree').length > 0) {
+                //console.log('test2');
+                clearInterval(interval);
+                SVGInjector(element.find('img').get());
+              }
+            }, 0);
           }
-        };
-      }
+        //};
+      //}
     };
   }
 ]);

@@ -1,6 +1,6 @@
 /**
  * # Tree
- * 
+ *
  * Display content in a tree view
  *
  * @module nag.tree

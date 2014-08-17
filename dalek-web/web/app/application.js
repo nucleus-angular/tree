@@ -1,7 +1,8 @@
 angular.module('app', [
   'app.core',
   'app.home',
-  'nag.tree'
+  'nag.tree',
+  'nag.svg'
 ])
 .config([
   '$locationProvider',

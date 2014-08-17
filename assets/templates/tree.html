@@ -1,3 +1,3 @@
 <ul>
-  <li ng-repeat="data in options.data" ng-class="{'tree-element': hasNodes(data), 'node': !hasNodes(data)}" nag-click="{'treeClick($event)': hasNodes(data), 'nodeClick($event, data)': !hasNodes(data)}" ng-include="options.getTemplatePath('recursion')"></li>
+  <li ng-repeat="data in options.data" ng-class="{'tree': hasNodes(data), 'leaf': !hasNodes(data), 'no-icon': !hasIcon(data)}" nag-click="{'treeClick($event)': hasNodes(data), 'leafClick($event, data)': !hasNodes(data)}" ng-include="options.getTemplatePath('recursion')"></li>
 </ul>
