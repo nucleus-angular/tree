@@ -7,7 +7,8 @@
  */
 angular.module('nag.tree', [
   'nag.core',
-  'nag.dynamicEvent'
+  'nag.dynamicEvent',
+  'nag.svg'
 ])
 .run([
   'nagDefaults',

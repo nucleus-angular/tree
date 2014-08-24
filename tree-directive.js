@@ -15,7 +15,8 @@ angular.module('nag.tree')
   '$compile',
   'nagHelper',
   'nagDefaults',
-  function($compile, nagHelper, nagDefaults) {
+  'nagSvgHelper',
+  function($compile, nagHelper, nagDefaults, nagSvgHelper) {
     return {
       restrict: 'A',
       scope: {
@@ -101,11 +102,9 @@ angular.module('nag.tree')
 
         //TODO: research: this seems to work however I have not idea and it only gets called 2 times even though it can take a while to load large tree
         var interval = setInterval(function() {
-          //console.log('test');
           if(element.find('img').length > 0) {
-            //console.log('test2');
             clearInterval(interval);
-            SVGInjector(element.find('img').get());
+            nagSvgHelper.inject(element.find('img').get());
           }
         }, 0);
       }
